@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>لوحة تحكم المدير</title>
+</head>
+<body class="admin-page">
+    <div class="sidebar">
+        <h2>إدارة فايروس</h2>
+        <button onclick="window.location.href='index.html'">عرض المتجر</button>
+    </div>
+
+    <main class="admin-content">
+        <h1>إضافة منتج جديد 🛠️</h1>
+        <div class="add-box">
+            <input type="text" id="pName" placeholder="اسم المنتج">
+            <input type="number" id="pPrice" placeholder="السعر بالريال">
+            <select id="pCat">
+                <option value="اشتراك">اشتراك رقمي</option>
+                <option value="جهاز">جهاز إلكتروني</option>
+            </select>
+            <button class="btn-save" onclick="saveProduct()">نشر في المتجر</button>
+        </div>
+
+        <table border="1" style="width:100%; margin-top:20px; color: white;">
+            <thead>
+                <tr>
+                    <th>المنتج</th>
+                    <th>السعر</th>
+                    <th>حذف</th>
+                </tr>
+            </thead>
+            <tbody id="adminList"></tbody>
+        </table>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
