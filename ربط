@@ -1,0 +1,37 @@
+// وظيفة حفظ المنتج للمدير
+function saveProduct() {
+    const name = document.getElementById('pName').value;
+    const price = document.getElementById('pPrice').value;
+    const cat = document.getElementById('pCat').value;
+
+    if(name && price) {
+        let products = JSON.parse(localStorage.getItem('virusProducts')) || [];
+        products.push({ id: Date.now(), name, price, cat });
+        localStorage.setItem('virusProducts', JSON.stringify(products));
+        alert("تمت الإضافة بنجاح!");
+        location.reload();
+    }
+}
+
+// وظيفة عرض المنتجات للزبون
+function displayForCustomer() {
+    const list = document.getElementById('customerList');
+    let products = JSON.parse(localStorage.getItem('virusProducts')) || [];
+    
+    if(list) {
+        list.innerHTML = products.map(p => `
+            <div class="product-card">
+                <h3>${p.name}</h3>
+                <p>السعر: ${p.price} ريال</p>
+                <button class="btn-buy" onclick="sendWhatsApp('${p.name}', '${p.price}')">طلب عبر واتساب 💬</button>
+            </div>
+        `).join('');
+    }
+}
+
+// إرسال الطلب للواتساب
+function sendWhatsApp(name, price) {
+    const phone = "966XXXXXXXXX"; // ضع رقمك هنا
+    const text = `طلب جديد من متجر فايروس:%0Aالمنتج: ${name}%0Aالسعر: ${price} ريال`;
+    window.open(`https://wa.me/${phone}?text=${text}`);
+}
